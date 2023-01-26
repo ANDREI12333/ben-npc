@@ -1,11 +1,11 @@
 import nextcord
 from nextcord.ext import commands
-import random, asyncio, jstyleson as json
+import random, asyncio, jstyleson as json, os
 
 config = json.load(open("config.json"))
 intents = nextcord.Intents.all()
 bot = commands.Bot(command_prefix=config.get("prefix"), intents=intents)
-token = config.get("token")
+token = os.getenv("token")
 
 @bot.event
 async def on_ready():
