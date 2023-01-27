@@ -1,10 +1,7 @@
 import nextcord
 from nextcord.ext import commands
-import random, asyncio, jstyleson as json, os, logging
+import random, asyncio, jstyleson as json, os
 
-fmt = "[%(asctime)s] [%(levelname)s] %(message)s"
-datefmt = "%H:%M:%S"
-logging.basicConfig(format=fmt, datefmt=datefmt)
 config = json.load(open("config.json"))
 intents = nextcord.Intents.all()
 bot = commands.Bot(command_prefix=config.get("prefix"), intents=intents)
@@ -12,7 +9,7 @@ token = os.getenv("token")
 
 @bot.event
 async def on_ready():
-	logging.info("Running!")
+	print("Ready!")
 
 @bot.command()
 async def send(ctx, msg: str):
@@ -24,7 +21,7 @@ async def send(ctx, msg: str):
 		reply = ctx.reply(":x: You can't do this.")
 		asyncio.sleep(3)
 		reply.delete()
-	logging.info(f"{ctx.author.username}#{ctx.author.discriminator} ({ctx.author.id}) made the bot say: {msg}")
+	print(f"{ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id}) made the bot say: {msg}")
 
 @bot.command()
 async def transformers(ctx):
@@ -36,7 +33,7 @@ async def transformers(ctx):
 		await ctx.reply("Pisat")
 	else:
 		await ctx.reply("Skelete Mort")
-	logging.info(f"{ctx.author.username}#{ctx.author.discriminator} ({ctx.author.id}) transformed into: {value}")
+	print(f"{ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id}) transformed into: {value}")
 
 @bot.command()
 async def mesaj(ctx):
@@ -57,7 +54,7 @@ async def mesaj(ctx):
 		await ctx.channel.send("Daca ai mai putin de 18 ani. Te plac :sunglasses:")
 	else:
 		await ctx.channel.send(":x: Ai ajuns in infintiv. (Tia picat un numar fara mesaj.)")
-	logging.info(f"{ctx.author.username}#{ctx.author.discriminator} ({ctx.author.id}) got a random message of: {value}")
+	print(f"{ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id}) got a random message of: {value}")
 
 @bot.command()
 async def ben(ctx, msg: str):
@@ -79,6 +76,6 @@ async def ben(ctx, msg: str):
 		await ctx.reply("EGH")
 	else:
 		await ctx.reply(":x: Error!")
-	logging.info(f"{ctx.author.username}#{ctx.author.discriminator} ({ctx.author.id}) asked ben: `{msg}` and got: `{value}`")
+	print(f"{ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id}) asked ben: `{msg}` and got: `{value}`")
 
 bot.run(token)
