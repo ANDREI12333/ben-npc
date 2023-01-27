@@ -3,7 +3,8 @@ from nextcord.ext import commands
 import random, asyncio, jstyleson as json, os, logging
 
 fmt = "[%(asctime)s] [%(levelname)s] %(message)s"
-logging.basicConfig(fmt=fmt)
+datefmt = "%H:%M:%S"
+logging.basicConfig(format=fmt, datefmt=datefmt)
 config = json.load(open("config.json"))
 intents = nextcord.Intents.all()
 bot = commands.Bot(command_prefix=config.get("prefix"), intents=intents)
