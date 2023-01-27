@@ -26,11 +26,13 @@ async def send(ctx, msg: str):
 @bot.command()
 async def transformers(ctx):
 	await ctx.reply("TE BAG LA MINE IN CUR SI TE TRANSFORMI IN:")
-	value = random.randint(1,3)
+	value = random.randint(1,5)
 	if value == 1:
 		await ctx.reply("Cacat")
 	elif value == 2:
 		await ctx.reply("Pisat")
+	elif value == 4:
+		await ctx.reply("'Car'men")
 	else:
 		await ctx.reply("Skelete Mort")
 	print(f"{ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id}) transformed into: {value}")
